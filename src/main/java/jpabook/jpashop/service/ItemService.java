@@ -1,6 +1,7 @@
 package jpabook.jpashop.service;
 
 import jpabook.jpashop.domain.Item;
+import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,15 @@ public class ItemService {
     @Transactional
     public void saveItem(Item item){
         itemRepository.save(item);
+    }
+
+    @Transactional
+    public void updateItem(Long itemId, Book bookParam){
+        Item fidnItem = itemRepository.findOne(itemId); // 영속 상태 즉 JPA가 관리함,
+                                // /준영속은 JPA가 관리하지 않아 SET으로 해도 UPDATE 쿼리 안 날림
+        fidnItem.setPrice(bookParam.getPrice());
+        fidnItem.setName(bookParam.getName());
+        fidnItem.setStockQuantity(bookParam.getStockQuantity());
     }
 
     public List<Item> findItems(){

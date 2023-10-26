@@ -18,7 +18,7 @@ public class Delivery {
     @Embedded
     private Address address;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)//default는 ordinal , 숫자 형태로 들어감 그러나 중간에 들어가면 밀릴 수 있음
     private DeliveryStatus status; //READY, COMP
 
 }

@@ -20,7 +20,8 @@ public class Member {
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member") //order 테이블에 있는 member에 의해 매핑
+    //연관 관계의 주인은 foreign key가 있는 곳
+    //mappedby는 주인이 아님을 표시
     private List<Order> orders = new ArrayList<>();
-    
 }
